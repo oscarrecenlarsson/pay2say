@@ -1,10 +1,10 @@
 import * as S from "./Styles";
 
-export const About = () => {
+export default function About() {
   return (
     <>
       <S.Text>About</S.Text>
       <S.Image>Image</S.Image>
     </>
   );
-};
+}
