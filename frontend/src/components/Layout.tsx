@@ -1,13 +1,18 @@
+import { SetStateAction, useEffect, useState } from "react";
 import { Outlet, useOutletContext } from "react-router-dom";
+
 import Header from "./Header";
 import Footer from "./Footer";
+import Disclaimer from "./Disclaimer";
+
 import * as S from "./Styles";
-import { SetStateAction, useEffect, useState } from "react";
+
 import { getConnectedMetaMask } from "../services/metaMask";
 import { getContract } from "../services/getContract";
 import { getState } from "../services/contractInteractions";
-import { ContractState } from "../interfaces/interfaces";
 import { initWeb3 } from "../services/initWeb3";
+
+import { ContractState } from "../interfaces/interfaces";
 
 export default function Layout() {
   const [connectedAccount, setConnectedAccount] = useState("");
@@ -18,6 +23,8 @@ export default function Layout() {
   });
 
   const [contract, setContract] = useState<any>(undefined);
+
+  const [showDisclaimer, setShowDisclaimer] = useState(true);
 
   const getSetConnectedAccount = async () => {
     const acc = await getConnectedMetaMask();
@@ -87,6 +94,7 @@ export default function Layout() {
   return (
     <>
       <Header connectedAccount={connectedAccount}></Header>
+      {showDisclaimer && <Disclaimer setShowDisclaimer={setShowDisclaimer} />}
       <S.OutletWrapper>
         <Outlet
           context={{

@@ -13,6 +13,7 @@ export const OutletWrapper = styled.main`
   gap: 15%;
   background-color: papayawhip;
   overflow-y: auto;
+  margin-top: 64px;
 
   @media (max-width: 992px) {
     flex-direction: column;
@@ -31,6 +32,8 @@ export const Header = styled.header`
   justify-content: space-around;
   align-items: center;
   background-color: grey;
+  position: fixed;
+  top: 0;
 `;
 
 export const Nav = styled.nav`
@@ -168,4 +171,18 @@ export const Image = styled.div`
   justify-content: center;
   align-items: center;
   background-color: purple;
+`;
+
+export const Disclaimer = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: calc(100vh - 128px);
+  background-color: green;
+  //background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 64px;
 `;
