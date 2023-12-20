@@ -6,14 +6,16 @@ contract pay2say {
 
     constructor() {
         contractOwner = (msg.sender);
+        creator = (msg.sender);
     }
 
     event NewState(State);
     event Withdrawal(address contractOwner, uint amount);
 
     address public contractOwner;
-    string public text;
-    uint public amount;
+    string public text =
+        "Do you have something better to say? Be prepared to pay!";
+    uint public amount = 0;
     address public creator;
 
     struct State {

@@ -1,14 +1,23 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useOutletContext } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 import * as S from "./Styles";
 import { SetStateAction, useEffect, useState } from "react";
 import { getConnectedMetaMask } from "../services/metaMask";
+import { getContract } from "../services/getContract";
+import { getState } from "../services/contractInteractions";
+import { ContractState } from "../interfaces/interfaces";
+import { initWeb3 } from "../services/initWeb3";
 
-export const Layout = () => {
-  // add context={} to Outlet?
-
+export default function Layout() {
   const [connectedAccount, setConnectedAccount] = useState("");
+  const [contractState, setContractState] = useState<ContractState>({
+    text: "Nothing to display",
+    amount: 0,
+    creator: "0x0",
+  });
+
+  const [contract, setContract] = useState<any>(undefined);
 
   const getSetConnectedAccount = async () => {
     const acc = await getConnectedMetaMask();
@@ -30,10 +39,33 @@ export const Layout = () => {
     }
   };
 
+  const populateContractState = async (contract: any): Promise<void> => {
+    try {
+      if (contract !== undefined && contract.methods !== undefined) {
+        const newState = await getState(contract);
+        if (newState) {
+          setContractState(newState);
+        }
+      } else {
+        console.error("Contract not initialized or missing required methods");
+      }
+    } catch (error) {
+      console.error("Error in populateContractState:", error);
+    }
+  };
+
   useEffect(() => {
     const initPage = () => {
       getSetConnectedAccount();
       accountListener();
+
+      const web3 = initWeb3();
+
+      const newContract = getContract(web3);
+      if (newContract) {
+        setContract(newContract);
+        populateContractState(newContract);
+      }
     };
 
     initPage();
@@ -56,9 +88,21 @@ export const Layout = () => {
     <>
       <Header connectedAccount={connectedAccount}></Header>
       <S.OutletWrapper>
-        <Outlet />
+        <Outlet
+          context={{
+            contract,
+            contractState,
+            setContractState,
+            connectedAccount,
+            populateContractState,
+          }}
+        />
       </S.OutletWrapper>
       <Footer></Footer>
     </>
   );
-};
+}
+
+export function useStates() {
+  return useOutletContext<any>();
+}
