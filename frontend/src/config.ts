@@ -1,4 +1,8 @@
-export const CONTRACT_ADDRESS = "0x5fbdb2315678afecb367f032d93f642f64180aa3";
+//local hardhat
+//export const CONTRACT_ADDRESS = "0x5fbdb2315678afecb367f032d93f642f64180aa3";
+
+//Deployd on Sepolia
+export const CONTRACT_ADDRESS = "0xF3634Bd87AEb01A811c7DEBD29be62249Dc53C09";
 
 export const CONTRACT_ABI = [
   {

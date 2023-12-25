@@ -42,15 +42,18 @@ export const getState = async (
         error instanceof TypeError &&
         error.message.includes("Failed to fetch")
       ) {
+        console.log(error);
+        console.log(error);
         console.error(
-          "Failed to connect to the contract. Make sure the hardhat server is running and that the contract is deployed to it. To run the server cd into contracts and run npx hardhat node"
+          "Failed to connect to the contract.If you are running a local Hardhat node, make sure the hardhat server is running and that the contract is deployed to it. To run the server cd into contracts and run npx hardhat node"
         );
       } else if (
         error instanceof AbiError &&
         error.message.includes("Parameter decoding error")
       ) {
+        console.log(error);
         console.error(
-          "Failed to connect to the contract. Make sure that the contract is deployed to the hardhat node. Open a new terminal, cd into contracts and run npx hardhat run --network localhost scripts/deploy.ts"
+          "Failed to connect to the contract. If you are running a local Hardhat node, make sure that the contract is deployed to the hardhat node. Open a new terminal, cd into contracts and run npx hardhat run --network localhost scripts/deploy.ts"
         );
       } else {
         console.error(error);
