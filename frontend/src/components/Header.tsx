@@ -11,7 +11,14 @@ export default function Header({ connectedAccount }: HeaderProps) {
     <>
       <S.Header>
         <S.Logo>
-          <NavLink to={"/"}>Pay2Say</NavLink>
+          <NavLink to={"/"}>
+            <img
+              src="/assets/pay2sayLogo.png"
+              alt="Pay2Say Logo"
+              width="54"
+              height="54"
+            ></img>
+          </NavLink>
         </S.Logo>
 
         <S.Nav>

@@ -17,9 +17,9 @@ import { ContractState } from "../interfaces/interfaces";
 export default function Layout() {
   const [connectedAccount, setConnectedAccount] = useState("");
   const [contractState, setContractState] = useState<ContractState>({
-    text: "Nothing to display",
+    text: "Nothing to display. Please connect metamask and select the Sepolia testnet.",
     amount: 0,
-    creator: "0x0",
+    creator: "0x0000000000000000000000000000000000000000",
   });
 
   const [contract, setContract] = useState<any>(undefined);
@@ -92,7 +92,7 @@ export default function Layout() {
   }, []);
 
   return (
-    <>
+    <S.Body>
       <Header connectedAccount={connectedAccount}></Header>
       {showDisclaimer && <Disclaimer setShowDisclaimer={setShowDisclaimer} />}
       <S.OutletWrapper>
@@ -107,7 +107,7 @@ export default function Layout() {
         />
       </S.OutletWrapper>
       <Footer></Footer>
-    </>
+    </S.Body>
   );
 }
 

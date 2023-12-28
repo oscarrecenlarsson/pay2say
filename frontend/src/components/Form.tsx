@@ -8,18 +8,35 @@ export default function Form() {
   const { contract, connectedAccount, populateContractState } = useStates();
   const [formData, setFormData] = useState<FormData>({ text: "", amount: 0 });
 
-  function handleChange(e: ChangeEvent<HTMLInputElement>) {
+  function handleChange(
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
   }
 
+  //const byteSize = new Blob([formData.text]).size;
+  //console.log(byteSize);
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
 
-    // ??? NOT OPENING METAMASK FOR SIGNING
-    //console.log("opening up metaMask...");
+    if (!formData.text.trim()) {
+      console.error("Text is required");
+      return;
+    }
+
+    const byteSize = new Blob([formData.text]).size;
+    if (byteSize > 120) {
+      console.error(
+        "Text must be 120 bytes or less. Current size:",
+        byteSize,
+        "bytes"
+      );
+      return;
+    }
 
     const minimumAmount = 0.000000000000000001;
 
@@ -41,16 +58,24 @@ export default function Form() {
     <>
       <S.Form onSubmit={handleSubmit}>
         <h2>Form</h2>
-        <label htmlFor="text">Text</label>
-        <input
-          type="text"
+        <p>
+          If you want to change the text in the contract you can submit a new
+          text here, just make sure the amount you send in is greater than the
+          amount in the contract.
+        </p>
+
+        <S.Label htmlFor="text">Write your text. Max size 120 bytes.</S.Label>
+
+        <textarea
           id="text"
           name="text"
-          onChange={handleChange}
+          rows={4}
+          cols={43}
           value={formData.text}
-        />
+          onChange={handleChange}
+        ></textarea>
 
-        <label htmlFor="amount">Amount in ETH</label>
+        <S.Label htmlFor="amount">Specify your amount in ETH</S.Label>
         <input
           type="number"
           id="amount"
@@ -58,7 +83,7 @@ export default function Form() {
           onChange={handleChange}
           value={formData.amount}
         />
-        <button type="submit">Submit</button>
+        <S.Btn type="submit">Submit</S.Btn>
       </S.Form>
     </>
   );
