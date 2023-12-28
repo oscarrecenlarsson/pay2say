@@ -3,6 +3,7 @@ import Layout from "./components/Layout";
 import Home from "./components/Home";
 import About from "./components/About";
 import Nft from "./components/Nft";
+import Admin from "./components/Admin";
 
 export const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ export const router = createBrowserRouter([
       {
         path: "/nft",
         element: <Nft />,
+      },
+      {
+        path: "/admin",
+        element: <Admin />,
       },
     ],
   },

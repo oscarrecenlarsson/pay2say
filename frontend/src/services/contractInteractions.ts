@@ -1,9 +1,10 @@
 import { ethers } from "ethers";
 import { ContractState } from "../interfaces/interfaces";
-import { AbiError } from "web3";
+import { AbiError, Address } from "web3";
 
 export const getState = async (
-  contract: any
+  contract: any,
+  web3: any
 ): Promise<ContractState | undefined> => {
   if (contract) {
     try {
@@ -14,7 +15,7 @@ export const getState = async (
         return res;
       });
 
-      const unitAmount = await contract.methods
+      const amountInWei = await contract.methods
         .amount()
         .call((err: any, res: any) => {
           if (err) {
@@ -23,7 +24,7 @@ export const getState = async (
           return res;
         });
 
-      const amount = Number(unitAmount.toString());
+      const amount = web3.utils.fromWei(amountInWei, "ether");
 
       const creator = await contract.methods
         .creator()
@@ -66,7 +67,7 @@ export const updateState = async (
   contract: any,
   connectedAccount: string,
   text: string,
-  amount: number
+  amount: string
 ) => {
   if (contract) {
     try {
@@ -82,5 +83,40 @@ export const updateState = async (
     } catch (error) {
       console.log(error);
     }
+  }
+};
+
+export const getBalance = async (contract: any, web3: any) => {
+  try {
+    const balance = await web3.eth.getBalance(contract.options.address);
+    return web3.utils.fromWei(balance, "ether");
+  } catch (error) {
+    console.error("Error fetching contract balance: ", error);
+    return 0;
+  }
+};
+
+export const withdraw = async (contract: any, connectedAccount: Address) => {
+  try {
+    await contract.methods.withdraw().send({ from: connectedAccount });
+  } catch (error) {
+    console.error("Error during withdrawal: ", error);
+  }
+};
+
+export const getContractOwner = async (contract: any) => {
+  try {
+    const contractOwner = await contract.methods
+      .contractOwner()
+      .call((err: any, res: any) => {
+        if (err) {
+          console.log("err: ", err);
+        }
+        return res;
+      });
+    return contractOwner.toLowerCase();
+  } catch (error) {
+    console.error("Error fetching contract owner: ", error);
+    return null;
   }
 };

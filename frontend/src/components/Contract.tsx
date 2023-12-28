@@ -47,7 +47,7 @@ export default function Contract() {
         </h3>
 
         <h5>
-          <S.Amount>{contractState.amount} WEI</S.Amount>
+          <S.Amount>{contractState.amount} ETH</S.Amount>
           <br />
           <br />
           <br />

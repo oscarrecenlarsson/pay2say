@@ -1,12 +1,12 @@
 export interface ContractState {
   text: string;
-  amount: number;
+  amount: string;
   creator: string;
 }
 
 export interface FormData {
   text: string;
-  amount: number;
+  amount: string;
 }
 
 // export interface Pay2SayContract {

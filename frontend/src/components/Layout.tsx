@@ -13,16 +13,19 @@ import { getState } from "../services/contractInteractions";
 import { initWeb3 } from "../services/initWeb3";
 
 import { ContractState } from "../interfaces/interfaces";
+import Web3 from "web3";
+import { RegisteredSubscription } from "web3/lib/commonjs/eth.exports";
 
 export default function Layout() {
   const [connectedAccount, setConnectedAccount] = useState("");
   const [contractState, setContractState] = useState<ContractState>({
     text: "Nothing to display. Please connect metamask and select the Sepolia testnet.",
-    amount: 0,
+    amount: "0",
     creator: "0x0000000000000000000000000000000000000000",
   });
 
   const [contract, setContract] = useState<any>(undefined);
+  const [web3, setWeb3] = useState<Web3<RegisteredSubscription>>();
 
   const [showDisclaimer, setShowDisclaimer] = useState(true);
 
@@ -46,10 +49,13 @@ export default function Layout() {
     }
   };
 
-  const populateContractState = async (contract: any): Promise<void> => {
+  const populateContractState = async (
+    contract: any,
+    web3: any
+  ): Promise<void> => {
     try {
       if (contract !== undefined && contract.methods !== undefined) {
-        const newState = await getState(contract);
+        const newState = await getState(contract, web3);
         if (newState) {
           setContractState(newState);
         }
@@ -67,11 +73,12 @@ export default function Layout() {
       accountListener();
 
       const web3 = initWeb3();
+      setWeb3(web3);
 
       const newContract = getContract(web3);
       if (newContract) {
         setContract(newContract);
-        populateContractState(newContract);
+        populateContractState(newContract, web3);
       }
     };
 
@@ -93,7 +100,7 @@ export default function Layout() {
 
   return (
     <S.Body>
-      <Header connectedAccount={connectedAccount}></Header>
+      <Header connectedAccount={connectedAccount} contract={contract} />
       {showDisclaimer && <Disclaimer setShowDisclaimer={setShowDisclaimer} />}
       <S.OutletWrapper>
         <Outlet
@@ -103,6 +110,7 @@ export default function Layout() {
             setContractState,
             connectedAccount,
             populateContractState,
+            web3,
           }}
         />
       </S.OutletWrapper>
