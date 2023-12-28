@@ -9,7 +9,7 @@ const secondaryLight = "#D9D9D9";
 const interactiveNormal = "#64FFDA";
 const interactiveHover = "#C0C0C0";
 
-export const Body = styled.body`
+export const Body = styled.div`
   font-family: Arial, Helvetica, sans-serif;
 `;
 
@@ -296,17 +296,41 @@ export const Text = styled.div`
   width: 400px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: ${secondaryLight};
+  margin-top: 20px;
+  margin-bottom: 84px;
+  padding: 20px;
+  border-radius: 15px;
+  border: 5px solid ${primaryLight};
+
+  @media (max-width: 992px) {
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+`;
+
+export const Admin = styled.div`
+  box-sizing: border-box;
+  height: 300px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
   background-color: ${secondaryLight};
   margin-top: 20px;
   margin-bottom: 84px;
 
-  padding-left: 20px;
-  padding-right: 20px;
+  padding: 20px;
 
   border-radius: 15px;
-  border: 5px solid ${primaryLight};
+  border: 5px solid ${interactiveNormal};
+
+  h2 {
+    margin: 0;
+  }
 
   @media (max-width: 992px) {
     margin-top: 0px;

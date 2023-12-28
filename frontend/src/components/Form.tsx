@@ -5,8 +5,9 @@ import { FormData } from "../interfaces/interfaces";
 import { updateState } from "../services/contractInteractions";
 
 export default function Form() {
-  const { contract, connectedAccount, populateContractState } = useStates();
-  const [formData, setFormData] = useState<FormData>({ text: "", amount: 0 });
+  const { contract, connectedAccount, populateContractState, web3 } =
+    useStates();
+  const [formData, setFormData] = useState<FormData>({ text: "", amount: "0" });
 
   function handleChange(
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -38,12 +39,12 @@ export default function Form() {
       return;
     }
 
-    const minimumAmount = 0.000000000000000001;
+    // const minimumAmount = 0.000000000000000001;
 
-    if (formData.amount < minimumAmount) {
-      console.error("Amount must be greater than", minimumAmount);
-      return;
-    }
+    // if (formData.amount < minimumAmount) {
+    //   console.error("Amount must be greater than", minimumAmount);
+    //   return;
+    // }
 
     await updateState(
       contract,
@@ -51,7 +52,7 @@ export default function Form() {
       formData.text,
       formData.amount
     );
-    populateContractState(contract);
+    populateContractState(contract, web3);
   }
 
   return (
