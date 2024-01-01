@@ -3,10 +3,17 @@ import { useStates } from "./Layout";
 import { useState, ChangeEvent } from "react";
 import { FormData } from "../interfaces/interfaces";
 import { updateState } from "../services/contractInteractions";
+import BigNumber from "bignumber.js";
+import * as utils from "web3-utils";
 
 export default function Form() {
-  const { contract, connectedAccount, populateContractState, web3 } =
-    useStates();
+  const {
+    contract,
+    contractState,
+    connectedAccount,
+    populateContractState,
+    web3,
+  } = useStates();
   const [formData, setFormData] = useState<FormData>({ text: "", amount: "0" });
 
   function handleChange(
@@ -39,12 +46,17 @@ export default function Form() {
       return;
     }
 
-    // const minimumAmount = 0.000000000000000001;
+    const formAmount = new BigNumber(utils.toWei(formData.amount, "ether"));
+    const contractAmount = new BigNumber(
+      utils.toWei(contractState.amount, "ether")
+    );
 
-    // if (formData.amount < minimumAmount) {
-    //   console.error("Amount must be greater than", minimumAmount);
-    //   return;
-    // }
+    if (formAmount.isLessThanOrEqualTo(contractAmount)) {
+      console.error(
+        "Amount must be greater than the current amount in the contract."
+      );
+      return;
+    }
 
     await updateState(
       contract,
