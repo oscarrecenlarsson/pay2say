@@ -30,9 +30,9 @@ export default function Form() {
     }
 
     const byteSize = new Blob([formData.text]).size;
-    if (byteSize > 120) {
+    if (byteSize > 140) {
       console.error(
-        "Text must be 120 bytes or less. Current size:",
+        "Text must be 140 bytes or less. Current size:",
         byteSize,
         "bytes"
       );
@@ -65,7 +65,7 @@ export default function Form() {
           amount in the contract.
         </p>
 
-        <S.Label htmlFor="text">Write your text. Max size 120 bytes.</S.Label>
+        <S.Label htmlFor="text">Write your text. Max size 140 bytes.</S.Label>
 
         <textarea
           id="text"

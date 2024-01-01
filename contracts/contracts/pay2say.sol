@@ -30,7 +30,7 @@ contract pay2say {
     }
 
     function updateState(string memory _text) external payable {
-        require(bytes(_text).length <= 120, "Text must be 120 bytes or less");
+        require(bytes(_text).length <= 140, "Text must be 140 bytes or less");
         require(
             msg.value > amount,
             "msg.value must be higher than current amount"
