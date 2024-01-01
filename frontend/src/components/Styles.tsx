@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 const primaryDark = "#1C1C1C";
 const primaryLight = "#383838";
@@ -52,7 +52,7 @@ export const Header = styled.header`
   background-color: ${secondaryDark};
   position: fixed;
   top: 0;
-  z-index: 100;
+  z-index: 1000;
 `;
 
 export const Nav = styled.nav`
@@ -386,6 +386,15 @@ export const Image = styled.div`
   }
 `;
 
+const rollUp = keyframes`
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-100%);
+  }
+`;
+
 export const Disclaimer = styled.div`
   position: fixed;
   top: 0;
@@ -404,6 +413,11 @@ export const Disclaimer = styled.div`
     ${primaryDark} 40px,
     ${primaryDark} 80px
   );
+  transition: transform 2s ease-in-out;
+
+  &.roll-up {
+    animation: ${rollUp} 2s forwards;
+  }
 `;
 
 export const Label = styled.label`

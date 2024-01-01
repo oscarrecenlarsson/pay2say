@@ -7,10 +7,14 @@ interface DisclaimerProps {
 
 export default function Disclaimer(props: DisclaimerProps) {
   const [isChecked, setIsChecked] = useState(false);
+  const [animate, setAnimate] = useState(false);
 
   const handleDisclaimerConfirm = () => {
     if (isChecked) {
-      props.setShowDisclaimer(false);
+      setAnimate(true);
+      setTimeout(() => {
+        props.setShowDisclaimer(false);
+      }, 2000);
     } else {
       alert("Please agree to the terms before proceeding.");
     }
@@ -22,7 +26,7 @@ export default function Disclaimer(props: DisclaimerProps) {
 
   return (
     <>
-      <S.Disclaimer>
+      <S.Disclaimer className={animate ? "roll-up" : ""}>
         <S.DisclaimerText>
           <h2>Disclaimer</h2>
           <h3>Viewer discretion is advised</h3>
