@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/pay2say/static/css/main.e6c13ad2.css",
-    "main.js": "/pay2say/static/js/main.48b549b3.js",
-    "static/js/787.9e9f4ffd.chunk.js": "/pay2say/static/js/787.9e9f4ffd.chunk.js",
-    "index.html": "/pay2say/index.html",
-    "main.e6c13ad2.css.map": "/pay2say/static/css/main.e6c13ad2.css.map",
-    "main.48b549b3.js.map": "/pay2say/static/js/main.48b549b3.js.map",
-    "787.9e9f4ffd.chunk.js.map": "/pay2say/static/js/787.9e9f4ffd.chunk.js.map"
+    "main.css": "/pay2say/frontend/static/css/main.e6c13ad2.css",
+    "main.js": "/pay2say/frontend/static/js/main.449fadf8.js",
+    "static/js/787.9e9f4ffd.chunk.js": "/pay2say/frontend/static/js/787.9e9f4ffd.chunk.js",
+    "index.html": "/pay2say/frontend/index.html",
+    "main.e6c13ad2.css.map": "/pay2say/frontend/static/css/main.e6c13ad2.css.map",
+    "main.449fadf8.js.map": "/pay2say/frontend/static/js/main.449fadf8.js.map",
+    "787.9e9f4ffd.chunk.js.map": "/pay2say/frontend/static/js/787.9e9f4ffd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.48b549b3.js"
+    "static/js/main.449fadf8.js"
   ]
 }
