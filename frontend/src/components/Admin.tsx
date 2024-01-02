@@ -31,7 +31,7 @@ export default function Admin() {
         are the creator of the contract.
       </p>
       <p>
-        <b>Balance:</b> {balance} ETH.
+        <b>Balance:</b> {balance} ETH
       </p>
       <S.Btn onClick={handleWithdraw}>Withdraw</S.Btn>
     </S.Admin>
