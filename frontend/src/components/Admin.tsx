@@ -10,8 +10,7 @@ export default function Admin() {
   const fetchBalance = async () => {
     if (contract) {
       const newBalance = await getBalance(contract, web3);
-      const formattedBalance = parseFloat(newBalance);
-      setBalance(formattedBalance);
+      setBalance(newBalance);
     }
   };
 
