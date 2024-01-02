@@ -1,22 +1,22 @@
+import { useCallback, useEffect, useState } from "react";
 import * as S from "./Styles";
 import { useStates } from "./Layout";
 import { getBalance, withdraw } from "../services/contractInteractions";
-import { useEffect, useState } from "react";
 
 export default function Admin() {
   const { contract, web3, connectedAccount } = useStates();
   const [balance, setBalance] = useState(0);
 
-  const fetchBalance = async () => {
+  const fetchBalance = useCallback(async () => {
     if (contract) {
       const newBalance = await getBalance(contract, web3);
       setBalance(newBalance);
     }
-  };
+  }, [contract, web3]);
 
   useEffect(() => {
     fetchBalance();
-  }, [contract]);
+  }, [fetchBalance]);
 
   async function handleWithdraw() {
     await withdraw(contract, connectedAccount);
