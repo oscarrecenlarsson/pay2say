@@ -32,8 +32,8 @@ export default function Contract() {
         )}
         <S.ContractHeaderWrapper>
           <img
-            src="/assets/ethLogo.png"
-            alt="Pay2Say Logo"
+            src={`${process.env.REACT_APP_IMG_PATH}/ethLogo.png`}
+            alt="Ethereum Logo"
             width="45px"
             height="45px"
           ></img>

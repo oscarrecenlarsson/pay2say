@@ -9,7 +9,12 @@ export default function Nft() {
         metadata as a proof of the current state of the contract.
       </S.Text>
       <S.Image>
-        <img src="/assets/nfts.png" alt="NFTs" width="400" height="400"></img>
+        <img
+          src={`${process.env.REACT_APP_IMG_PATH}/nfts.png`}
+          alt="NFTs"
+          width="400"
+          height="400"
+        ></img>
       </S.Image>
     </>
   );

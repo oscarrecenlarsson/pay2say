@@ -20,7 +20,7 @@ export default function About() {
       </S.Text>
       <S.Image>
         <img
-          src="/assets/pay2sayLogo.png"
+          src={`${process.env.REACT_APP_IMG_PATH}/pay2sayLogo.png`}
           alt="Pay2Say Logo"
           width="400"
           height="400"

@@ -29,7 +29,7 @@ export default function Header({ connectedAccount, contract }: HeaderProps) {
         <S.Logo>
           <NavLink to={"/"}>
             <img
-              src="/assets/pay2sayLogo.png"
+              src={`${process.env.REACT_APP_IMG_PATH}/pay2sayLogo.png`}
               alt="Pay2Say Logo"
               width="54"
               height="54"
