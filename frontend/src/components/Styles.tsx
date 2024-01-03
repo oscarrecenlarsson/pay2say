@@ -209,7 +209,7 @@ export const Contract = styled.div`
   justify-content: space-around;
   align-items: flex-start;
   color: white;
-  background-image: url(/assets/contractBackground.png);
+  background-image: url(${process.env.REACT_APP_IMG_PATH} + "/contractBackground.png");
   background-size: cover;
   border-radius: 15px;
   border: 5px solid white;
