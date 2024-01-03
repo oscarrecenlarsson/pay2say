@@ -34,12 +34,13 @@ jobs:
         run: npm ci
         working-directory: ./frontend
 
+      - name: Run tests
+        run: npm test -- --passWithNoTests
+        working-directory: ./frontend
+
       - name: Build
         run: npm run build
         working-directory: ./frontend
-
-      - name: Run tests
-        run: npm test -- --passWithNoTests
 
       # - name: Deploy with gh-pages
       #   run: |
