@@ -1,32 +1,21 @@
-import { createBrowserRouter } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import Home from "./components/Home";
 import About from "./components/About";
 import Nft from "./components/Nft";
 import Admin from "./components/Admin";
 
-export const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Layout />,
-    children: [
-      {
-        path: "/",
-        element: <Home />,
-        index: true,
-      },
-      {
-        path: "/about",
-        element: <About />,
-      },
-      {
-        path: "/nft",
-        element: <Nft />,
-      },
-      {
-        path: "/admin",
-        element: <Admin />,
-      },
-    ],
-  },
-]);
+const RouterComponent = () => (
+  <HashRouter>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="about" element={<About />} />
+        <Route path="nft" element={<Nft />} />
+        <Route path="admin" element={<Admin />} />
+      </Route>
+    </Routes>
+  </HashRouter>
+);
+
+export default RouterComponent;
