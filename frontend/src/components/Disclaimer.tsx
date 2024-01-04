@@ -3,15 +3,16 @@ import * as S from "./Styles";
 
 interface DisclaimerProps {
   setShowDisclaimer: React.Dispatch<React.SetStateAction<boolean>>;
+  rollDown: boolean;
 }
 
 export default function Disclaimer(props: DisclaimerProps) {
   const [isChecked, setIsChecked] = useState(false);
-  const [animate, setAnimate] = useState(false);
+  const [rollUp, setRollUp] = useState(false);
 
   const handleDisclaimerConfirm = () => {
     if (isChecked) {
-      setAnimate(true);
+      setRollUp(true);
       setTimeout(() => {
         props.setShowDisclaimer(false);
       }, 2000);
@@ -26,7 +27,9 @@ export default function Disclaimer(props: DisclaimerProps) {
 
   return (
     <>
-      <S.Disclaimer className={animate ? "roll-up" : ""}>
+      <S.Disclaimer
+        className={rollUp ? "roll-up" : props.rollDown ? "roll-down" : ""}
+      >
         <S.DisclaimerText>
           <h2>Disclaimer</h2>
           <h3>Viewer discretion is advised</h3>

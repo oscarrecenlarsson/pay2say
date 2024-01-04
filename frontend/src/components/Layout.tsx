@@ -28,6 +28,12 @@ export default function Layout() {
   const [web3, setWeb3] = useState<Web3<RegisteredSubscription>>();
 
   const [showDisclaimer, setShowDisclaimer] = useState(true);
+  const [rollDown, setRollDown] = useState(false);
+
+  const rollDownDisclaimer = () => {
+    setShowDisclaimer(true);
+    setRollDown(true);
+  };
 
   const getSetConnectedAccount = async () => {
     const acc = await getConnectedMetaMask();
@@ -101,7 +107,9 @@ export default function Layout() {
   return (
     <S.Body>
       <Header connectedAccount={connectedAccount} contract={contract} />
-      {showDisclaimer && <Disclaimer setShowDisclaimer={setShowDisclaimer} />}
+      {showDisclaimer && (
+        <Disclaimer setShowDisclaimer={setShowDisclaimer} rollDown={rollDown} />
+      )}
       <S.OutletWrapper>
         <Outlet
           context={{
@@ -114,7 +122,7 @@ export default function Layout() {
           }}
         />
       </S.OutletWrapper>
-      <Footer></Footer>
+      <Footer rollDownDisclaimer={rollDownDisclaimer} />
     </S.Body>
   );
 }

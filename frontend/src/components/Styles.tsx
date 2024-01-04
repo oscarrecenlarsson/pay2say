@@ -423,6 +423,15 @@ const rollUp = keyframes`
   }
 `;
 
+const rollDown = keyframes`
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+`;
+
 export const Disclaimer = styled.div`
   position: fixed;
   top: 0;
@@ -445,6 +454,10 @@ export const Disclaimer = styled.div`
 
   &.roll-up {
     animation: ${rollUp} 2s forwards;
+  }
+
+  &.roll-down {
+    animation: ${rollDown} 2s forwards;
   }
 `;
 
@@ -509,4 +522,20 @@ export const CopiedNotification = styled.div`
   padding: 8px;
   border-radius: 4px;
   font-size: 0.8rem;
+`;
+
+export const ClickHere = styled.span`
+  color: ${interactiveNormal};
+  text-decoration: underline;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  cursor: pointer;
+
+  &:hover {
+    color: ${interactiveHover};
+  }
+
+  &:active {
+    color: ${interactiveActive};
+  }
 `;
