@@ -73,8 +73,9 @@ export default function Form() {
         <h2>Form</h2>
         <p>
           If you want to change the text in the contract you can submit a new
-          text here, just make sure the amount you send in is greater than the
-          amount in the contract.
+          text here, just make sure the amount you send is greater than the
+          amount in the contract. Hint: you can click on the amount in the
+          contract to copy it!
         </p>
 
         <S.Label htmlFor="text">Write your text. Max size 140 bytes.</S.Label>
