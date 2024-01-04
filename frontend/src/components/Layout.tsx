@@ -122,7 +122,10 @@ export default function Layout() {
           }}
         />
       </S.OutletWrapper>
-      <Footer rollDownDisclaimer={rollDownDisclaimer} />
+      <Footer
+        showDisclaimer={showDisclaimer}
+        rollDownDisclaimer={rollDownDisclaimer}
+      />
     </S.Body>
   );
 }
