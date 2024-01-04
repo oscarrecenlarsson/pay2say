@@ -47,7 +47,9 @@ export default function Contract() {
         </h3>
 
         <h5>
-          <S.Amount>{contractState.amount} ETH</S.Amount>
+          <S.Amount onClick={() => copyToClipboard(contractState.amount)}>
+            {contractState.amount} ETH
+          </S.Amount>
           <br />
           <br />
           <br />

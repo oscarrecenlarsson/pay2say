@@ -243,6 +243,9 @@ export const FullAddress = styled.span`
   cursor: pointer;
   padding-top: 10px;
   padding-bottom: 10px;
+  &:hover {
+    color: ${interactiveHover};
+  }
 `;
 
 export const ShortAddress = styled.span`
@@ -278,6 +281,14 @@ export const ContractHeaderWrapper = styled.div`
 export const Amount = styled.span`
   font-size: 1.125rem;
   font-weight: bold;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: ${interactiveNormal};
+  cursor: pointer;
+
+  &:hover {
+    color: ${interactiveHover};
+  }
 `;
 
 export const Creator = styled.span`
