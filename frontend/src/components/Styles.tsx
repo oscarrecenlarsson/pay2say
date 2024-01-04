@@ -7,7 +7,8 @@ const secondaryDark = "#646464";
 const secondaryLight = "#D9D9D9";
 
 const interactiveNormal = "#64FFDA";
-const interactiveHover = "#C0C0C0";
+const interactiveHover = "#8FFFF0";
+const interactiveActive = " #4DC8B4";
 
 export const Body = styled.div`
   font-family: Arial, Helvetica, sans-serif;
@@ -90,11 +91,13 @@ export const Nav = styled.nav`
 
       &:hover {
         background-color: ${interactiveHover};
-        color: ${primaryDark};
+      }
+
+      &:active {
+        background-color: ${interactiveActive};
       }
 
       &.active {
-        color: ${primaryDark};
         background-color: ${interactiveNormal};
         text-decoration: underline;
       }
@@ -125,7 +128,7 @@ export const ConnectBtn = styled.button`
   justify-content: center;
   align-items: center;
   background-color: ${interactiveNormal};
-  color: ${primaryDark};
+  color: black;
   font-size: 1rem;
   padding: 10px;
   white-space: nowrap;
@@ -136,7 +139,10 @@ export const ConnectBtn = styled.button`
 
   &:hover {
     background-color: ${interactiveHover};
-    color: ${primaryDark};
+  }
+
+  &:active {
+    background-color: ${interactiveActive};
   }
 `;
 
@@ -145,7 +151,7 @@ export const Btn = styled.button`
   justify-content: center;
   align-items: center;
   background-color: ${interactiveNormal};
-  color: ${primaryDark};
+  color: black;
   font-size: 1rem;
   padding: 10px;
   white-space: nowrap;
@@ -155,7 +161,10 @@ export const Btn = styled.button`
 
   &:hover {
     background-color: ${interactiveHover};
-    color: ${primaryDark};
+  }
+
+  &:active {
+    background-color: ${interactiveActive};
   }
 `;
 
@@ -273,6 +282,10 @@ export const ContractHeaderWrapper = styled.div`
     transform: translateX(-100%);
   }
 
+  &:active ${FullAddress} {
+    color: ${interactiveActive};
+  }
+
   &:hover ${ShortAddress} {
     display: none;
   }
@@ -288,6 +301,10 @@ export const Amount = styled.span`
 
   &:hover {
     color: ${interactiveHover};
+  }
+
+  &:active {
+    color: ${interactiveActive};
   }
 `;
 
