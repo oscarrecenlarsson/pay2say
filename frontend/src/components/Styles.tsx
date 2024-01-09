@@ -208,6 +208,26 @@ export const Form = styled.form`
   }
 `;
 
+export const FormError = styled.div`
+  width: 300px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #ffdddd;
+  border: 1px solid #ff8888;
+  color: #d8000c;
+  text-align: center;
+`;
+
+export const SubmitStatus = styled.div`
+  width: 300px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #ddffdd;
+  border: 1px solid #88ff88;
+  color: #008000;
+  text-align: center;
+`;
+
 export const Contract = styled.div`
   position: relative;
   box-sizing: border-box;
@@ -341,7 +361,7 @@ export const Text = styled.div`
 
 export const Admin = styled.div`
   box-sizing: border-box;
-  height: 300px;
+  height: 350px;
   width: 400px;
   display: flex;
   flex-direction: column;

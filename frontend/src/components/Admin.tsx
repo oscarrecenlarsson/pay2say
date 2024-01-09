@@ -6,6 +6,8 @@ import { getBalance, withdraw } from "../services/contractInteractions";
 export default function Admin() {
   const { contract, web3, connectedAccount } = useStates();
   const [balance, setBalance] = useState(0);
+  const [transactionStatus, setTransactionStatus] = useState<string>("");
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
   const fetchBalance = useCallback(async () => {
     if (contract) {
@@ -19,8 +21,26 @@ export default function Admin() {
   }, [fetchBalance]);
 
   async function handleWithdraw() {
-    await withdraw(contract, connectedAccount);
-    fetchBalance();
+    setErrorMessage("");
+    try {
+      setTransactionStatus("Processing withdrawal...");
+      await withdraw(contract, connectedAccount);
+      fetchBalance();
+      setTransactionStatus("Withdrawal successful!");
+      setTimeout(() => {
+        setTransactionStatus("");
+      }, 3000);
+    } catch (error: any) {
+      if (error.message.includes("User denied transaction signature")) {
+        setTransactionStatus("");
+        setErrorMessage("Transaction rejected");
+        setTimeout(() => {
+          setErrorMessage("");
+        }, 3000);
+      } else {
+        setErrorMessage("An error occurred while updating the contract.");
+      }
+    }
   }
 
   return (
@@ -30,6 +50,10 @@ export default function Admin() {
         Here you can check the balance of the contract and withdraw funds if you
         are the creator of the contract.
       </p>
+      {errorMessage && <S.FormError>{errorMessage}</S.FormError>}{" "}
+      {transactionStatus && (
+        <S.SubmitStatus>{transactionStatus}</S.SubmitStatus>
+      )}
       <p>
         <b>Balance:</b> {balance} ETH.
       </p>
