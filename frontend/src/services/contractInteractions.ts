@@ -69,19 +69,28 @@ export const updateState = async (
   text: string,
   amount: string
 ) => {
-  if (contract) {
-    try {
-      await contract.methods
-        .updateState(text)
-        .send({
-          value: ethers.parseEther(amount.toString()),
-          from: connectedAccount,
-        })
-        .once("receipt", async (receipt: any) => {
-          console.log(receipt);
-        });
-    } catch (error) {
-      console.log(error);
+  if (!contract) {
+    throw new Error("Contract is not initialized.");
+  }
+
+  if (!connectedAccount) {
+    throw new Error("No connected account found. Please connect your wallet.");
+  }
+
+  try {
+    await contract.methods
+      .updateState(text)
+      .send({
+        value: ethers.parseEther(amount.toString()),
+        from: connectedAccount,
+      })
+      .once("receipt", async (receipt: any) => {
+        console.log(receipt);
+      });
+  } catch (error: any) {
+    console.log(error);
+    if (error.message.includes("User denied transaction signature")) {
+      throw new Error("User denied transaction signature");
     }
   }
 };
@@ -99,7 +108,10 @@ export const getBalance = async (contract: any, web3: any) => {
 export const withdraw = async (contract: any, connectedAccount: Address) => {
   try {
     await contract.methods.withdraw().send({ from: connectedAccount });
-  } catch (error) {
+  } catch (error: any) {
+    if (error.message.includes("User denied transaction signature")) {
+      throw new Error("User denied transaction signature");
+    }
     console.error("Error during withdrawal: ", error);
   }
 };
