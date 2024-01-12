@@ -1,5 +1,5 @@
 // NFT VERSION
-export const CONTRACT_ADDRESS = "0x0fA26BC9bE504186642f820865241b12FcE90B2A";
+export const CONTRACT_ADDRESS = "0x18e5b7d35B34515919950005CA68BB553Dae9421";
 
 //NFTVERSION
 export const CONTRACT_ABI = [
@@ -466,6 +466,30 @@ export const CONTRACT_ABI = [
     name: "setApprovalForAll",
     outputs: [],
     stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "string",
+        name: "splitTextInput",
+        type: "string",
+      },
+      {
+        internalType: "uint256",
+        name: "maxLineLength",
+        type: "uint256",
+      },
+    ],
+    name: "splitText",
+    outputs: [
+      {
+        internalType: "string[]",
+        name: "",
+        type: "string[]",
+      },
+    ],
+    stateMutability: "pure",
     type: "function",
   },
   {
