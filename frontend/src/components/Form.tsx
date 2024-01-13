@@ -85,6 +85,7 @@ export default function Form() {
       console.error(error);
       if (error.message.includes("No connected account found")) {
         setErrorMessage("Please connect your wallet to submit. (Sepolia)");
+        setTransactionStatus("");
       } else if (error.message.includes("User denied transaction signature")) {
         setTransactionStatus("");
         setErrorMessage("Transaction rejected");

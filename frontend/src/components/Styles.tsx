@@ -166,6 +166,15 @@ export const Btn = styled.button`
   &:active {
     background-color: ${interactiveActive};
   }
+
+  a {
+    text-decoration: none;
+    color: black;
+
+    &:visited {
+      color: black;
+    }
+  }
 `;
 
 export const Footer = styled.footer`
