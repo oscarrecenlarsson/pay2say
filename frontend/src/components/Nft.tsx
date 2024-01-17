@@ -13,14 +13,16 @@ export default function Nft() {
           own NFT today!
         </p>
         <br />
-        <S.Btn>
-          <a
-            href="https://testnets.opensea.io/collection/pay2say-3"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            View on OpenSea
-          </a>
+        <S.Btn
+          onClick={() =>
+            window.open(
+              "https://testnets.opensea.io/collection/pay2say-3",
+              "_blank",
+              "noopener,noreferrer"
+            )
+          }
+        >
+          View on OpenSea
         </S.Btn>
       </S.Text>
       <S.Image>
